@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"noverna.de/m/v2/internal/api"
+	"noverna.de/m/v2/internal/api/routes"
 	"noverna.de/m/v2/internal/config"
 	"noverna.de/m/v2/internal/logger"
 )
@@ -23,6 +24,7 @@ func main() {
 	server := api.NewServer(config.GetConfig(), nil)
 
 	server.Mount("/ws", websocketHandler())
+	routes.SetupRoutes(server)
 
 	gracefulShutdown(server)
 }

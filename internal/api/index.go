@@ -49,8 +49,6 @@ func NewServer(cfg *config.Config, log *logger.Logger) *Server {
 	}
 
 	s.setupMiddleware()
-	s.setupRoutes()
-
 	return s
 }
 
@@ -75,11 +73,12 @@ func (s *Server) setupMiddleware() {
 	}))
 }
 
-func (s *Server) setupRoutes() {
-	s.router.Get("/", s.Index)
-	s.router.Get("/health", s.Health)
-	s.router.Get("/version", s.Version)
-}
+// func (s *Server) setupRoutes() {
+// 	s.router.Get("/", s.Index)
+// 	s.router.Get("/version", s.Version)
+
+// 	health.Register(s)
+// }
 
 func (s *Server) Index(w http.ResponseWriter, r *http.Request) {
 	s.logger.Info("Index route accessed", map[string]any{
@@ -91,16 +90,6 @@ func (s *Server) Index(w http.ResponseWriter, r *http.Request) {
 		"message": "API Server is running",
 		"status":  "ok",
 		"time":    time.Now().Format(time.RFC3339),
-	}
-	s.WriteJSON(w, http.StatusOK, response)
-}
-
-// Health check for the API
-func (s *Server) Health(w http.ResponseWriter, r *http.Request) {
-	// Health Check will normally not be logged
-	response := map[string]any{
-		"status": "healthy",
-		"time":   time.Now().Format(time.RFC3339),
 	}
 	s.WriteJSON(w, http.StatusOK, response)
 }
