@@ -37,6 +37,13 @@ type Security struct {
 	RateLimitPerMinute int    `toml:"rate_limit_per_minute"`
 }
 
+type Advanced struct {
+	CacheEndpoint string `toml:"cache_endpoint"`
+	CacheNodes    []string `toml:"cache_nodes"`
+	CDNEndpoint string `toml:"cdn_endpoint"`
+	CDNNodes    []string `toml:"cdn_nodes"`
+}
+
 type Debug struct {
 	Enabled bool `toml:"enabled"`
 }

@@ -16,3 +16,10 @@ rate_limit_per_minute = 60
 
 [debug]
 enabled = true
+
+[advanced]
+cache_endpoint = "http://cache.noverna.de"
+cache_nodes = ["http://cache-node-1.noverna.de"]
+
+cdn_endpoint = "https://cdn.noverna.dev" # Primary Entrypoint
+cdn_nodes = ["http://cdn-node-1.local", "http://cdn-node-2.local"] # Optional: If you dont have an Loadbalancer and want to use your own CDN Server
